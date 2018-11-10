@@ -48,15 +48,9 @@ while True:
         # For each of your ships, move randomly if the ship is on a low halite location or the ship is full.
         #   Else, collect halite.
         if game_map[ship.position].halite_amount < constants.MAX_HALITE / 10 or ship.is_full:
-            # Direction.get_all_cardinals()
-            # cardinals = ship.position.get_surrounding_cardinals()
-            direction_towards_best_nearby_choice = max(Direction.get_all_cardinals(),
-                           key=lambda card:
-                           game_map[ship.position.directional_offset(card)].halite_amount)
-            command_queue.append(ship.move(direction_towards_best_nearby_choice))
-            # command_queue.append(
-            #     ship.move(
-            #         random.choice([ Direction.North, Direction.South, Direction.East, Direction.West ])))
+            command_queue.append(
+                ship.move(
+                    random.choice([ Direction.North, Direction.South, Direction.East, Direction.West ])))
         else:
             command_queue.append(ship.stay_still())
 
